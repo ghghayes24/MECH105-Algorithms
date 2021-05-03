@@ -1,8 +1,8 @@
 # MECH105-Algorithms
 These are the algorithms I created for MECH 105.
 ## Table of Contents
-1. Homework 2. *Algorithm 1* for Solving a simple electrical circut.
-2. Homework 2. *Algorithm 2* for Solving the degredation of Aqueous Bromide.
+1. _Homework 2_. *Algorithm 1* for Solving a simple electrical circut.
+2. _Homework 2_. *Algorithm 2* for Solving the degredation of Aqueous Bromide.
 3. Homework 
 
 
@@ -36,14 +36,17 @@ subplot (1,2,2)
 plot(t,q2),title('Bigger Capacitor Charge'),xlabel('time'),ylabel('Charge')
 ### Algorithm 2
 % Given experimental data
+
 t_exp = 10:10:60;
 c_exp = [3.4 2.6 1.6 1.3 1.0 0.5];
 
 % Expected function
+
 t_func = 0:.5:70
 c_func = 4.84*(exp(-.034*(t_func)))
 
 % Plot
+
 hold on
 plot(t_exp,c_exp,'rd')
 plot(t_func,c_func,'g--')
@@ -51,3 +54,40 @@ xlabel('time in minutes')
 ylabel('concentration in ppm')
 legend('expected function','experimental data')
 hold off
+### Algorithm 3
+% Specify the variables needed to solve this problem (ie. height of each section, diameter, radiaus, ...)
+%   It is alwasy easier to work with variables (diameter_cyl = 25) than to use numbers everywhere, since a 
+%   diameter indicates something specific but the number 25 could mean anything
+
+dc=25;
+hc=19;
+dt=46;
+rc=.5*dc;
+rt=.5*dt;
+% Specify the height of the water
+
+h = 20
+% You can comment / uncomment lines below for testing. This will overwrite the previous line for h = 20.
+% For submission, make sure all of the following lines are commented out and h = 20! (OR IT IS MARKED AS WRONG)
+
+%h = 5
+%h = 19
+%h = 47
+%h = -1
+
+rn=((h-19)/(14/(rt-rc))+rc);
+
+% Now compute the volume. Using conditional statments you will want to first check the height makes sense,
+% and then solve the volume depending on what portion of the tank has been filled.
+% Make sure that your volume is stored in the variable v! (OR IT WILL BE MARKED AS WRONG)
+% You may find it more convenient to move v around in you code, it is only given here to indicate what variable to use
+
+if h<=19 && h>0
+    v=(pi*rc^2*h)
+elseif 33>=h && h>19
+    v=(pi*rc^2*hc)+((pi*(h-19)*(rc^2+rn^2+(rc*rn)))/3)
+else h>33||h<0
+    disp('error! Invalid Height Entered')
+end
+fprintf('v=%f',v)
+### Algorithm 4
